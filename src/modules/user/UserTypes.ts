@@ -1,4 +1,4 @@
-export type User = {
+export type UserModel = {
   uuid: string;
   firstname: string;
   lastname: string;

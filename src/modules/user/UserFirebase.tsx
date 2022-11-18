@@ -1,11 +1,11 @@
 //Example
 import { useWatchedObject } from '../../base/firebase/FirebaseService';
-import { User } from './UserTypes';
+import { UserModel } from './UserTypes';
 
-export function useUser(userId: string) {
-  return useWatchedObject<User>(`/users/${userId}`);
+export function useUser(userId: string | null) {
+  return useWatchedObject<UserModel>(`/users/${userId}`);
 }
 
 export function useUserList() {
-  return useWatchedObject<Array<User | null>>(`/users`);
+  return useWatchedObject<Array<UserModel | null>>(`/users`);
 }

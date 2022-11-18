@@ -1,55 +1,39 @@
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Container, LoadingOverlay, Space, TextInput } from '@mantine/core';
-import { Lock, Phone, UserCircle } from 'tabler-icons-react';
+import { Button, LoadingOverlay, Space, TextInput } from '@mantine/core';
+import { Lock, Mail } from 'tabler-icons-react';
 import { auth } from '../../../base/firebase/firebase-config';
+import { useRootStore } from '../../../base/RootStore';
+import { Routes } from '../../../routes/routes';
 
 export const LoginComponent = () => {
+  const { userStore } = useRootStore();
+
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const login = () => {
     signInWithEmailAndPassword(email, password).then(resp => {
-      // console.log(user)
-      // if (user) {
-      //     dispatch(setUUID(user?.user.uid))
-      // }
-      navigate('/redirect');
-    });
-
-    //dispatch(loginUser(email, password))
-  };
-
-  const userLogin = (email: string, password: string) => {
-    signInWithEmailAndPassword(email, password).then(resp => {
-      // console.log(user)
-      // if (user) {
-      //     dispatch(setUUID(user?.user.uid))
-      // }
-      navigate('/redirect');
+      if (resp?.user?.uid) {
+        userStore.setUserUid(resp.user.uid);
+        navigate(Routes.checkRole);
+      }
     });
   };
-
-  // useEffect(() => {
-  //     if (user){
-  //         dispatch(setUUID(user?.user.uid))
-  //         navigate('/redirect')
-  //     }
-  // },[user])
 
   return (
-    <Container>
+    <>
       {loading && <LoadingOverlay visible={true} />}
       <TextInput
         style={{ backgroundColor: '#EEF6FF', borderRadius: 10, padding: 5 }}
         variant={'unstyled'}
-        icon={<Phone />}
-        placeholder="Номер телефона"
+        icon={<Mail />}
+        placeholder="Электронная почта"
         onChange={(event: any) => {
           setEmail(event.target.value);
         }}
@@ -69,24 +53,6 @@ export const LoginComponent = () => {
         Вход
       </Button>
       {error?.message}
-      <Button
-        my={10}
-        leftIcon={<UserCircle />}
-        size={'lg'}
-        fullWidth
-        onClick={() => userLogin('user@mail.ru', '123456')}
-      >
-        Войти как пользователь
-      </Button>
-      <Button
-        my={10}
-        leftIcon={<UserCircle />}
-        size={'lg'}
-        fullWidth
-        onClick={() => userLogin('seller@mail.ru', '123456')}
-      >
-        Войти как продавец
-      </Button>
-    </Container>
+    </>
   );
 };
