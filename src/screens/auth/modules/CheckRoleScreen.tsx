@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { LoadingOverlay } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { useRootStore } from '../../../base/RootStore';
-import { useUser } from '../../../modules/user/UserFirebase';
+import { useUser } from '../../../modules/user/UserFirebaseService';
 import { Routes } from '../../../routes/routes';
 
 interface ICheckRoleScreenProps {}

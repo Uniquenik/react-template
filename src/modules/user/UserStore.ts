@@ -1,4 +1,4 @@
-import { UserModel } from './UserTypes';
+import { UserModel } from './types/UserTypes';
 import { makeAutoObservable } from 'mobx';
 
 export class UserStore {

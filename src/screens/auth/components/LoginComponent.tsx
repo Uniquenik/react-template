@@ -30,8 +30,8 @@ export const LoginComponent = () => {
     <>
       {loading && <LoadingOverlay visible={true} />}
       <TextInput
-        style={{ backgroundColor: '#EEF6FF', borderRadius: 10, padding: 5 }}
-        variant={'unstyled'}
+        variant={'filled'}
+        size={'lg'}
         icon={<Mail />}
         placeholder="Электронная почта"
         onChange={(event: any) => {
@@ -40,8 +40,8 @@ export const LoginComponent = () => {
       />
       <Space h={'sm'} />
       <TextInput
-        style={{ backgroundColor: '#EEF6FF', borderRadius: 10, padding: 5 }}
-        variant={'unstyled'}
+        variant={'filled'}
+        size={'lg'}
         icon={<Lock />}
         placeholder="Пароль"
         onChange={(event: any) => {

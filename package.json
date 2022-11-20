@@ -9,7 +9,6 @@
     "@firebase/firestore-types": "^2.5.0",
     "@mantine/core": "^5.7.2",
     "@mantine/hooks": "^5.7.2",
-    "@radix-ui/react-icons": "^1.1.1",
     "@types/node": "^16.11.26",
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
