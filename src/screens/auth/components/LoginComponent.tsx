@@ -19,10 +19,10 @@ export const LoginComponent = () => {
 
   const login = () => {
     signInWithEmailAndPassword(email, password).then(resp => {
-      if (resp?.user?.uid) {
+      /* if (resp?.user?.uid) {
         userStore.setUserUid(resp.user.uid);
         navigate(Routes.checkRole);
-      }
+      } */
     });
   };
 

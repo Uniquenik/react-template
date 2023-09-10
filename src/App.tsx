@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { ColorScheme, ColorSchemeProvider, MantineProvider, MantineThemeOverride } from '@mantine/core';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routes/routes';
@@ -8,11 +8,11 @@ export const App: React.FC = () => {
   const MANTINE_THEME: MantineThemeOverride = {
     primaryColor: 'green',
     breakpoints: {
-      xs: 350,
-      sm: 768,
-      md: 1024,
-      lg: 1368,
-      xl: 1600,
+      xs: '20em',
+      sm: '48em',
+      md: '64em',
+      lg: '85em',
+      xl: '100em',
     },
   };
 
@@ -30,7 +30,9 @@ export const App: React.FC = () => {
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
       <MantineProvider theme={{ ...MANTINE_THEME, colorScheme }} withGlobalStyles withNormalizeCSS>
-        <RouterProvider router={router} />
+        <Suspense>
+          <RouterProvider router={router} />
+        </Suspense>
       </MantineProvider>
     </ColorSchemeProvider>
   );
