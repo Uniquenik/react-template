@@ -1,4 +1,5 @@
-import { $api, API_URL } from '../../base/http/AxiosInstance';
+import { $api, API_URL } from 'base/http/AxiosInstance';
+
 import { BeerModel } from './types/ExampleTypes';
 
 export const exampleEndpoints = {

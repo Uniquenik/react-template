@@ -1,7 +1,8 @@
-import React from 'react';
-import { LoginComponent } from './components/LoginComponent';
-import DefaultLayout from 'components/layouts/defaultLayout/DefaultLayout';
 import { Container } from '@mantine/core';
+
+import DefaultLayout from 'components/layouts/defaultLayout/DefaultLayout';
+
+import { LoginComponent } from './components/LoginComponent';
 
 interface IAuthScreenProps {}
 
@@ -16,4 +17,4 @@ const AuthScreen: React.FC<IAuthScreenProps> = () => {
   );
 };
 
-export default AuthScreen
+export default AuthScreen;

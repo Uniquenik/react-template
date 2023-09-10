@@ -1,5 +1,6 @@
-import { UserModel } from './types/UserTypes';
 import { makeAutoObservable } from 'mobx';
+
+import { UserModel } from './types/UserTypes';
 
 export class UserStore {
   loading = false;

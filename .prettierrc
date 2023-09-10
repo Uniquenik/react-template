@@ -9,7 +9,12 @@
   "jsxBracketSameLine": false,
   "arrowParens": "avoid",
   "proseWrap": "always",
-  "importOrder": ["^base/|^components/|^helpers/|^hooks/|^modules/|^screens/|^styles/|^utils/", "^[./]", "^assets/"],
+  "importOrder": [
+    "^base/|^components/|^helpers/|^hooks/|^modules/|^routes/|^screens/|^styles/|^utils/",
+    "^[./]",
+    "^assets/"
+  ],
   "importOrderSeparation": true,
-  "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"]
+  "importOrderParserPlugins": ["typescript", "jsx"],
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }

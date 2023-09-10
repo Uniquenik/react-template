@@ -1,6 +1,7 @@
-import { UserStore } from '../modules/user/UserStore';
 import { createContext, useContext } from 'react';
+
 import { ExampleStore } from '../modules/example/ExampleStore';
+import { UserStore } from '../modules/user/UserStore';
 
 class RootStore {
   exampleStore = new ExampleStore();

@@ -1,11 +1,13 @@
 import { useMediaQuery } from '@mantine/hooks';
 
+import { theme } from 'styles/theme';
+
 export const useAllMQ = () => {
   return {
-    isXS: useMediaQuery('(min-width: 350px)'),
-    isSM: useMediaQuery('(min-width: 768px)'),
-    isMD: useMediaQuery('(min-width: 1024px)'),
-    isLG: useMediaQuery('(min-width: 1368px)'),
-    isXL: useMediaQuery('(min-width: 1600px)'),
+    isXS: useMediaQuery(`(min-width: ${theme.breakpoints?.xs})`),
+    isSM: useMediaQuery(`(min-width: ${theme.breakpoints?.sm})`),
+    isMD: useMediaQuery(`(min-width: ${theme.breakpoints?.md})`),
+    isLG: useMediaQuery(`(min-width: ${theme.breakpoints?.lg})`),
+    isXL: useMediaQuery(`(min-width: ${theme.breakpoints?.xl})`),
   };
 };
