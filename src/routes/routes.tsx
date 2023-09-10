@@ -1,6 +1,6 @@
+import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { InfoSquare, Mailbox } from 'tabler-icons-react';
-import { lazy } from 'react';
 
 const AuthScreen = lazy(() => import('screens/auth/AuthScreen')),
   MainScreen = lazy(() => import('screens/main/MainScreen')),
@@ -14,8 +14,8 @@ export const Routes = {
 
 export const NavLinks: NavLinkModel[] = [
   {
-    path: '/link1',
-    title: 'Ссылка 1',
+    path: '/',
+    title: 'Главная',
     icon: <Mailbox />,
   },
   {
@@ -33,7 +33,7 @@ export const NavLinks: NavLinkModel[] = [
 export const router = createBrowserRouter([
   {
     path: Routes.auth,
-    element: <AuthScreen/>,
+    element: <AuthScreen />,
   },
   {
     path: Routes.main,

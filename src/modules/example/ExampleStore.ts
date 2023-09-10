@@ -1,6 +1,7 @@
 import { makeAutoObservable } from 'mobx';
-import { BeerModel } from './types/ExampleTypes';
+
 import { ExampleService } from './ExampleService';
+import { BeerModel } from './types/ExampleTypes';
 
 export class ExampleStore {
   loading = false;

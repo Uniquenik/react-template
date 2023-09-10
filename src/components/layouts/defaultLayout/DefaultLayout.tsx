@@ -1,19 +1,22 @@
 import { ActionIcon, Button, Container, createStyles, Group, Header as MantineHeader } from '@mantine/core';
-import {Plus } from 'tabler-icons-react';
-import { ColorSchemeButton } from '../../ColorSchemeButton';
-import { useRootStore } from 'base/RootStore';
-import { Link, useNavigate } from 'react-router-dom';
-import { NavLinks, Routes } from 'routes/routes';
 import { observer } from 'mobx-react-lite';
-import { DesktopNavItem } from './components/DesktopNavItem';
+import { Link, useNavigate } from 'react-router-dom';
+import { BrandReactNative, Plus } from 'tabler-icons-react';
+
+import { useRootStore } from 'base/RootStore';
 import { useAllMQ } from 'base/hooks/useAllMQ';
+import { NavLinks, Routes } from 'routes/routes';
+
+import { ColorSchemeButton } from '../../ColorSchemeButton';
+import { DesktopNavItem } from './components/DesktopNavItem';
 import { MobileNavItem } from './components/MobileNavItem';
 
 const DefaultLayout = observer((props: { children: JSX.Element }) => {
   const { userStore } = useRootStore();
+
   const { classes } = useStyles();
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const { isMD } = useAllMQ();
 
@@ -32,13 +35,15 @@ const DefaultLayout = observer((props: { children: JSX.Element }) => {
       <MantineHeader height={55} fixed={true}>
         <Container size={'xl'} className={classes.inner}>
           <Group align={'stretch'}>
-            {/* <ActionIcon size={'xl'}>
-              <BrandReact size={40} />
-            </ActionIcon> */}
+            <Link to={Routes.main}>
+              <ActionIcon size={'xl'}>
+                <BrandReactNative size={40} />
+              </ActionIcon>
+            </Link>
             {renderDesktopNavList()}
           </Group>
           <Group position={'right'}>
-           <Button variant={'subtle'} onClick={handleUserButton}>
+            <Button variant={'subtle'} onClick={handleUserButton}>
               {userStore.userInfo ? userStore.userInfo.lastname : 'Вход'}
             </Button>
             <ColorSchemeButton />
@@ -52,7 +57,7 @@ const DefaultLayout = observer((props: { children: JSX.Element }) => {
     return (
       <Group align={'center'} pt={2} pl={8}>
         {NavLinks.map(link => {
-          return <DesktopNavItem link={link} />;
+          return <DesktopNavItem key={link.title} link={link} />;
         })}
       </Group>
     );
@@ -63,7 +68,7 @@ const DefaultLayout = observer((props: { children: JSX.Element }) => {
       <MantineHeader height={60} fixed={true} position={{ bottom: -1, left: 0, right: 0 }}>
         <Group grow>
           {NavLinks.map(link => {
-            return <MobileNavItem link={link} />;
+            return <MobileNavItem key={link.path} link={link} />;
           })}
           <Link
             style={{ position: 'absolute', height: '75px', width: '75px', bottom: '3px', right: '7vw' }}

@@ -1,7 +1,7 @@
-import React from 'react';
 import { createStyles, Menu } from '@mantine/core';
-import { NavLinkModel } from '../../../../routes/routes';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { NavLinkModel } from 'routes/routes';
 
 interface INavLinkProps {
   link: NavLinkModel;

@@ -1,11 +1,11 @@
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Button, LoadingOverlay, Space, TextInput } from '@mantine/core';
+import { useState } from 'react';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { Lock, Mail } from 'tabler-icons-react';
-import { auth } from '../../../base/firebase/firebase-config';
-import { useRootStore } from '../../../base/RootStore';
-import { Routes } from '../../../routes/routes';
+
+import { useRootStore } from 'base/RootStore';
+import { auth } from 'base/firebase/firebase-config';
 
 export const LoginComponent = () => {
   const { userStore } = useRootStore();
@@ -13,17 +13,13 @@ export const LoginComponent = () => {
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
 
   const [email, setEmail] = useState('');
+
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
 
   const login = () => {
-    signInWithEmailAndPassword(email, password).then(resp => {
-      /* if (resp?.user?.uid) {
-        userStore.setUserUid(resp.user.uid);
-        navigate(Routes.checkRole);
-      } */
-    });
+    signInWithEmailAndPassword(email, password).then(resp => {});
   };
 
   return (

@@ -1,8 +1,8 @@
+import { ActionIcon, Stack, Text, createStyles } from '@mantine/core';
 import React from 'react';
-import { createStyles, Text, Stack } from '@mantine/core';
-import { NavLinkModel } from '../../../../routes/routes';
-import { ActionIcon } from '@mantine/core';
 import { Link } from 'react-router-dom';
+
+import { NavLinkModel } from 'routes/routes';
 
 interface INavLinkProps {
   link: NavLinkModel;
