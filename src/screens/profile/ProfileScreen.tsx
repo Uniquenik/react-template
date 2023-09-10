@@ -8,7 +8,7 @@ import { Button } from '@mantine/core';
 import DefaultLayout from '../../components/layouts/defaultLayout/DefaultLayout';
 import { observer } from 'mobx-react-lite';
 
-export const ProfileScreen = observer(() => {
+const ProfileScreen = observer(() => {
   const { exampleStore, userStore } = useRootStore();
 
   const navigate = useNavigate();
@@ -36,3 +36,5 @@ export const ProfileScreen = observer(() => {
     </DefaultLayout>
   );
 });
+
+export default ProfileScreen;

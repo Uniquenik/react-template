@@ -1,19 +1,19 @@
-import { ActionIcon, Container, createStyles, Group, Header as MantineHeader, Button } from '@mantine/core';
-import { BrandReact, Plus } from 'tabler-icons-react';
+import { ActionIcon, Button, Container, createStyles, Group, Header as MantineHeader } from '@mantine/core';
+import {Plus } from 'tabler-icons-react';
 import { ColorSchemeButton } from '../../ColorSchemeButton';
-import { useRootStore } from '../../../base/RootStore';
+import { useRootStore } from 'base/RootStore';
 import { Link, useNavigate } from 'react-router-dom';
-import { NavLinks, Routes } from '../../../routes/routes';
+import { NavLinks, Routes } from 'routes/routes';
 import { observer } from 'mobx-react-lite';
 import { DesktopNavItem } from './components/DesktopNavItem';
-import { useAllMQ } from '../../../base/hooks/useAllMQ';
+import { useAllMQ } from 'base/hooks/useAllMQ';
 import { MobileNavItem } from './components/MobileNavItem';
 
 const DefaultLayout = observer((props: { children: JSX.Element }) => {
   const { userStore } = useRootStore();
   const { classes } = useStyles();
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   const { isMD } = useAllMQ();
 
@@ -32,13 +32,13 @@ const DefaultLayout = observer((props: { children: JSX.Element }) => {
       <MantineHeader height={55} fixed={true}>
         <Container size={'xl'} className={classes.inner}>
           <Group align={'stretch'}>
-            <ActionIcon size={'xl'}>
+            {/* <ActionIcon size={'xl'}>
               <BrandReact size={40} />
-            </ActionIcon>
+            </ActionIcon> */}
             {renderDesktopNavList()}
           </Group>
           <Group position={'right'}>
-            <Button variant={'subtle'} onClick={handleUserButton}>
+           <Button variant={'subtle'} onClick={handleUserButton}>
               {userStore.userInfo ? userStore.userInfo.lastname : 'Вход'}
             </Button>
             <ColorSchemeButton />

@@ -1,22 +1,17 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Routes } from '../../routes/routes';
-import { LoadingOverlay } from '@mantine/core';
+import DefaultLayout from 'components/layouts/defaultLayout/DefaultLayout';
+import React from 'react';
 
 interface IMainScreenProps {}
 
-export const MainScreen: React.FC<IMainScreenProps> = () => {
-  const navigate = useNavigate();
-
-  //Effects
-  useEffect(() => {
-    navigate(Routes.auth);
-  });
-
+const MainScreen: React.FC<IMainScreenProps> = () => {
   //Render
   return (
-    <div>
-      <LoadingOverlay visible={true} />
-    </div>
+    <DefaultLayout> 
+      <div>
+        Main Screen
+      </div>
+    </DefaultLayout>
   );
 };
+
+export default MainScreen;
