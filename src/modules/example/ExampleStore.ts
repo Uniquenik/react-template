@@ -1,40 +1,43 @@
-import { makeAutoObservable } from 'mobx';
+import { createStore } from 'base/createStore';
 
-import { ExampleService } from './ExampleService';
+import { exampleService } from './ExampleService';
 import { BeerModel } from './types/ExampleTypes';
 
-export class ExampleStore {
-  loading = false;
-
-  beerItem: BeerModel | null = null;
-
-  private exampleService: ExampleService;
-
-  constructor() {
-    makeAutoObservable(this);
-    this.exampleService = new ExampleService();
-  }
-
-  getBeerItem = (id: string) => {
-    this.setLoading(true);
-
-    this.exampleService
-      .getBeer(id)
-      .then(item => {
-        this.setBeerItem(item);
-      })
-      .finally(() => {
-        this.setLoading(false);
-      });
-  };
-
-  setLoading = (value: boolean) => {
-    this.loading = value;
-  };
-
-  setBeerItem = (value: BeerModel | null) => {
-    this.beerItem = value;
-  };
-
-  resetStore = () => {};
+export interface IExampleStore {
+  loading: boolean;
+  beerItem: BeerModel | null;
+  getBeerItem: (id: string) => void;
+  getRandomBeer: () => void;
 }
+
+export const useExampleStore = createStore<IExampleStore>(
+  set => ({
+    loading: false,
+    beerItem: null,
+    getBeerItem: async id => {
+      set({ loading: true });
+
+      exampleService
+        .getBeer(id)
+        .then(item => {
+          set({ beerItem: item });
+        })
+        .finally(() => {
+          set({ loading: false });
+        });
+    },
+    getRandomBeer: async () => {
+      set({ loading: true });
+
+      exampleService
+        .getRandomBeer()
+        .then(item => {
+          set({ beerItem: item });
+        })
+        .finally(() => {
+          set({ loading: false });
+        });
+    },
+  }),
+  'ExampleStore',
+);

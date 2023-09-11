@@ -4,12 +4,9 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { Lock, Mail } from 'tabler-icons-react';
 
-import { useRootStore } from 'base/RootStore';
 import { auth } from 'base/firebase/firebase-config';
 
 export const LoginComponent = () => {
-  const { userStore } = useRootStore();
-
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
 
   const [email, setEmail] = useState('');

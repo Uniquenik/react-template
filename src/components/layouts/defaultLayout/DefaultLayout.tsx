@@ -1,18 +1,20 @@
 import { ActionIcon, Button, Container, createStyles, Group, Header as MantineHeader } from '@mantine/core';
-import { observer } from 'mobx-react-lite';
+import { PropsWithChildren } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BrandReactNative, Plus } from 'tabler-icons-react';
 
-import { useRootStore } from 'base/RootStore';
 import { useAllMQ } from 'base/hooks/useAllMQ';
+import { useUserStore } from 'modules/user/UserStore';
 import { NavLinks, Routes } from 'routes/routes';
 
 import { ColorSchemeButton } from '../../ColorSchemeButton';
 import { DesktopNavItem } from './components/DesktopNavItem';
 import { MobileNavItem } from './components/MobileNavItem';
 
-const DefaultLayout = observer((props: { children: JSX.Element }) => {
-  const { userStore } = useRootStore();
+interface IDefaultLayoutProps {}
+
+const DefaultLayout: React.FC<PropsWithChildren<IDefaultLayoutProps>> = props => {
+  const userStore = useUserStore();
 
   const { classes } = useStyles();
 
@@ -91,7 +93,8 @@ const DefaultLayout = observer((props: { children: JSX.Element }) => {
       </Container>
     </>
   );
-});
+};
+
 export default DefaultLayout;
 
 const useStyles = createStyles(theme => ({
