@@ -2,6 +2,8 @@ import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { InfoSquare, Mailbox } from 'tabler-icons-react';
 
+import { ErrorBoundaryLayout } from 'base/components/ErrorBoundaryLayout';
+
 const AuthScreen = lazy(() => import('screens/auth/AuthScreen')),
   MainScreen = lazy(() => import('screens/main/MainScreen')),
   ProfileScreen = lazy(() => import('screens/profile/ProfileScreen'));
@@ -32,16 +34,21 @@ export const NavLinks: NavLinkModel[] = [
 
 export const router = createBrowserRouter([
   {
-    path: Routes.auth,
-    element: <AuthScreen />,
-  },
-  {
-    path: Routes.main,
-    element: <MainScreen />,
-  },
-  {
-    path: Routes.profile,
-    element: <ProfileScreen />,
+    element: <ErrorBoundaryLayout />,
+    children: [
+      {
+        path: Routes.auth,
+        element: <AuthScreen />,
+      },
+      {
+        path: Routes.main,
+        element: <MainScreen />,
+      },
+      {
+        path: Routes.profile,
+        element: <ProfileScreen />,
+      },
+    ],
   },
 ]);
 

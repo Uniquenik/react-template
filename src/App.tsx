@@ -1,8 +1,11 @@
 import { ColorScheme, ColorSchemeProvider, LoadingOverlay, MantineProvider } from '@mantine/core';
 import { useLocalStorage } from '@mantine/hooks';
+import { Notifications } from '@mantine/notifications';
 import React, { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { RouterProvider } from 'react-router-dom';
 
+import ClientErrorScreen from 'screens/client-error/ClientErrorScreen';
 import { theme } from 'styles/theme';
 import { MANTINE_THEME_KEY, APP_THEME } from 'styles/types';
 
@@ -16,6 +19,7 @@ export const App: React.FC = () => {
     getInitialValueInEffect: true,
   });
 
+  //Handlers
   const handleToggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === APP_THEME.DARK ? APP_THEME.LIGHT : APP_THEME.DARK));
 
@@ -23,8 +27,16 @@ export const App: React.FC = () => {
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={handleToggleColorScheme}>
       <MantineProvider theme={{ ...theme, colorScheme }} withGlobalStyles withNormalizeCSS>
+        <Notifications bottom={80} />
         <Suspense fallback={<LoadingOverlay visible />}>
-          <RouterProvider router={router} />
+          <ErrorBoundary
+            resetKeys={[window.location.pathname]}
+            fallbackRender={({ error, resetErrorBoundary }) => (
+              <ClientErrorScreen error={error} onHandleReload={resetErrorBoundary} />
+            )}
+          >
+            <RouterProvider router={router} />
+          </ErrorBoundary>
         </Suspense>
       </MantineProvider>
     </ColorSchemeProvider>
