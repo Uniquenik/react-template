@@ -23,7 +23,8 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@firebase/app-types": "0.9.0",
