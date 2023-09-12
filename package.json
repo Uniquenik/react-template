@@ -26,6 +26,11 @@
     "serve": "vite preview",
     "prepare": "husky install"
   },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "prettier --write && yarn lint"
+    ]
+  },
   "devDependencies": {
     "@firebase/app-types": "0.9.0",
     "@firebase/auth-types": "0.12.0",
