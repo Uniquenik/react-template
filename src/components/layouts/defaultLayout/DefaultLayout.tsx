@@ -1,13 +1,4 @@
-import {
-  ActionIcon,
-  Box,
-  Button,
-  Container,
-  createStyles,
-  Group,
-  Header as MantineHeader,
-  MediaQuery,
-} from '@mantine/core';
+import { ActionIcon, Button, Container, createStyles, Group, Header as MantineHeader, MediaQuery } from '@mantine/core';
 import { PropsWithChildren } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BrandReactNative, Plus } from 'tabler-icons-react';
@@ -36,8 +27,6 @@ const DefaultLayout: React.FC<PropsWithChildren<IDefaultLayoutProps>> = props =>
       navigate(Routes.auth);
     }
   };
-
-  cons
 
   //Renders
   const renderDesktopMenu = () => {

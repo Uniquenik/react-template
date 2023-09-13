@@ -23,12 +23,14 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
+    "lint": "eslint",
     "serve": "vite preview",
+    "prettier": "prettier . --write",
     "prepare": "husky install"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
-      "prettier --write && yarn lint"
+      "yarn lint"
     ]
   },
   "devDependencies": {
@@ -43,7 +45,6 @@
     "@typescript-eslint/parser": "6.6.0",
     "@vitejs/plugin-react": "4.0.4",
     "eslint": "8.49.0",
-    "eslint-config-mantine": "^2.0.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-unused-imports": "3.0.0",
