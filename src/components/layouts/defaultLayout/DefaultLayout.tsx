@@ -1,9 +1,8 @@
-import { ActionIcon, Button, Container, createStyles, Group, Header as MantineHeader } from '@mantine/core';
+import { ActionIcon, Button, Container, createStyles, Group, Header as MantineHeader, MediaQuery } from '@mantine/core';
 import { PropsWithChildren } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BrandReactNative, Plus } from 'tabler-icons-react';
 
-import { useAllMQ } from 'base/hooks/useAllMQ';
 import { useUserStore } from 'modules/user/UserStore';
 import { NavLinks, Routes } from 'routes/routes';
 
@@ -19,8 +18,6 @@ const DefaultLayout: React.FC<PropsWithChildren<IDefaultLayoutProps>> = props =>
   const { classes } = useStyles();
 
   const navigate = useNavigate();
-
-  const { isMD } = useAllMQ();
 
   //Handlers
   const handleUserButton = () => {
@@ -87,7 +84,12 @@ const DefaultLayout: React.FC<PropsWithChildren<IDefaultLayoutProps>> = props =>
 
   return (
     <>
-      {isMD ? renderDesktopMenu() : renderMobileMenu()}
+      <MediaQuery largerThan={'md'} styles={{ display: 'none' }}>
+        {renderMobileMenu()}
+      </MediaQuery>
+      <MediaQuery smallerThan={'md'} styles={{ display: 'none' }}>
+        {renderDesktopMenu()}
+      </MediaQuery>
       <Container size={'xl'} pt={70}>
         {props.children}
       </Container>
