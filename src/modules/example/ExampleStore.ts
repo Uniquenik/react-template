@@ -1,3 +1,5 @@
+import { StateCreator } from 'zustand';
+
 import { createStore } from 'base/createStore';
 
 import { exampleService } from './ExampleService';
@@ -10,34 +12,33 @@ export interface IExampleStore {
   getRandomBeer: () => void;
 }
 
-export const useExampleStore = createStore<IExampleStore>(
-  set => ({
-    loading: false,
-    beerItem: null,
-    getBeerItem: async id => {
-      set({ loading: true });
+export const exampleStoreCreator: StateCreator<IExampleStore> = set => ({
+  loading: false,
+  beerItem: null,
+  getBeerItem: async id => {
+    set({ loading: true });
 
-      exampleService
-        .getBeer(id)
-        .then(item => {
-          set({ beerItem: item });
-        })
-        .finally(() => {
-          set({ loading: false });
-        });
-    },
-    getRandomBeer: async () => {
-      set({ loading: true });
+    exampleService
+      .getBeer(id)
+      .then(item => {
+        set({ beerItem: item });
+      })
+      .finally(() => {
+        set({ loading: false });
+      });
+  },
+  getRandomBeer: async () => {
+    set({ loading: true });
 
-      exampleService
-        .getRandomBeer()
-        .then(item => {
-          set({ beerItem: item });
-        })
-        .finally(() => {
-          set({ loading: false });
-        });
-    },
-  }),
-  'ExampleStore',
-);
+    exampleService
+      .getRandomBeer()
+      .then(item => {
+        set({ beerItem: item });
+      })
+      .finally(() => {
+        set({ loading: false });
+      });
+  },
+});
+
+export const useExampleStore = createStore<IExampleStore>(exampleStoreCreator, 'ExampleStore');

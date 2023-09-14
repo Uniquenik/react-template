@@ -1,31 +1,34 @@
-import { Button, LoadingOverlay, Space, TextInput } from '@mantine/core';
-import { useState } from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Button, LoadingOverlay, Space, TextInput, Text } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { Lock, Mail } from 'tabler-icons-react';
 
-import { auth } from 'base/firebase/firebase-config';
+import { useAuthStore } from 'modules/auth/AuthStore';
 
-export const LoginComponent = () => {
-  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+interface ILoginComponentProps {
+  error: any;
+  loading: boolean;
+  login: (email: string, password: string) => void;
+}
 
-  const [email, setEmail] = useState('');
-
-  const [password, setPassword] = useState('');
+export const LoginComponent: React.FC<ILoginComponentProps> = props => {
+  const { email, password, setEmail, setPassword } = useAuthStore();
 
   const navigate = useNavigate();
 
-  const login = () => {
-    signInWithEmailAndPassword(email, password).then(resp => {});
+  //Handlers
+  const handleLogin = () => {
+    props.login(email, password);
   };
 
+  //Render
   return (
-    <>
-      {loading && <LoadingOverlay visible={true} />}
+    <form onSubmit={handleLogin}>
+      {props.loading && <LoadingOverlay visible={true} />}
       <TextInput
         variant={'filled'}
         size={'lg'}
         icon={<Mail />}
+        type={'email'}
         placeholder="Электронная почта"
         onChange={(event: any) => {
           setEmail(event.target.value);
@@ -42,10 +45,12 @@ export const LoginComponent = () => {
         }}
       />
       <Space h={'xl'} />
-      <Button size={'lg'} fullWidth onClick={login}>
+      <Button size={'lg'} fullWidth type="submit">
         Вход
       </Button>
-      {error?.message}
-    </>
+      <Text data-testid="error" color="red" size={'md'} align="center">
+        {props?.error?.message}
+      </Text>
+    </form>
   );
 };

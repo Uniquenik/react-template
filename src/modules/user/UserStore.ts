@@ -1,3 +1,5 @@
+import { StateCreator } from 'zustand';
+
 import { createStore } from 'base/createStore';
 
 import { UserModel } from './types/UserTypes';
@@ -11,14 +13,13 @@ interface IUserStore {
   resetStore: () => void;
 }
 
-export const useUserStore = createStore<IUserStore>(
-  set => ({
-    loading: false,
-    userUid: null,
-    userInfo: null,
-    setUserUid: (value: string | null) => set({ userUid: value }),
-    setUserInfo: (value: UserModel | null) => set({ userInfo: value }),
-    resetStore: () => set({ userUid: null, userInfo: null }),
-  }),
-  'UserStore',
-);
+export const userStoreCreator: StateCreator<IUserStore> = set => ({
+  loading: false,
+  userUid: null,
+  userInfo: null,
+  setUserUid: (value: string | null) => set({ userUid: value }),
+  setUserInfo: (value: UserModel | null) => set({ userInfo: value }),
+  resetStore: () => set({ userUid: null, userInfo: null }),
+});
+
+export const useUserStore = createStore<IUserStore>(userStoreCreator, 'UserStore');
