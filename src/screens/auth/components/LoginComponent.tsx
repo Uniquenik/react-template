@@ -1,5 +1,4 @@
 import { Button, LoadingOverlay, Space, TextInput, Text } from '@mantine/core';
-import { useNavigate } from 'react-router-dom';
 import { Lock, Mail } from 'tabler-icons-react';
 
 import { useAuthStore } from 'modules/auth/AuthStore';
@@ -12,8 +11,6 @@ interface ILoginComponentProps {
 
 export const LoginComponent: React.FC<ILoginComponentProps> = props => {
   const { email, password, setEmail, setPassword } = useAuthStore();
-
-  const navigate = useNavigate();
 
   //Handlers
   const handleLogin = () => {
@@ -29,6 +26,7 @@ export const LoginComponent: React.FC<ILoginComponentProps> = props => {
         size={'lg'}
         icon={<Mail />}
         type={'email'}
+        value={email}
         placeholder="Электронная почта"
         onChange={(event: any) => {
           setEmail(event.target.value);
@@ -40,12 +38,13 @@ export const LoginComponent: React.FC<ILoginComponentProps> = props => {
         size={'lg'}
         icon={<Lock />}
         placeholder="Пароль"
+        value={password}
         onChange={(event: any) => {
           setPassword(event.target.value);
         }}
       />
       <Space h={'xl'} />
-      <Button size={'lg'} fullWidth type="submit">
+      <Button data-testid="submit-button" size={'lg'} fullWidth type="submit">
         Вход
       </Button>
       <Text data-testid="error" color="red" size={'md'} align="center">
