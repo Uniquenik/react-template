@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { putObject, watchObject } from './firebase-operations';
+import { putObject, watchObject } from './FirebaseOperations';
 
 export function useWatchedObject<Type extends object>(watchedPath: string) {
   const [lastWatchedObject, setLastWatchedObject] = useState<Type | null>(null);

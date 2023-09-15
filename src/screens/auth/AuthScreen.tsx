@@ -1,7 +1,7 @@
 import { Container } from '@mantine/core';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
-import { auth } from 'base/firebase/firebase-config';
+import { auth } from 'base/firebase/FirebaseConfig';
 import DefaultLayout from 'components/layouts/defaultLayout/DefaultLayout';
 
 import { LoginComponent } from './components/LoginComponent';

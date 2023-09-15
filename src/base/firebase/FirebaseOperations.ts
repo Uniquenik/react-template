@@ -1,7 +1,7 @@
 import firebase from 'firebase/compat';
 import { ref, get, set, update, child, onValue } from 'firebase/database';
 
-import { db } from './firebase-config';
+import { db } from './FirebaseConfig';
 
 type Unsubscribe = firebase.Unsubscribe;
 
