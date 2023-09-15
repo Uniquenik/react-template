@@ -6,7 +6,6 @@ import viteTsconfigPaths from 'vite-tsconfig-paths';
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
-    outDir: 'build',
     rollupOptions: {
       /* output: {
         //для просмотра размера зависимостей
@@ -22,6 +21,6 @@ export default defineConfig({
     open: true,
     port: 3000,
   },
-
+  base: '/react-template',
   plugins: [react(), viteTsconfigPaths(), splitVendorChunkPlugin(), svgrPlugin()],
 });
