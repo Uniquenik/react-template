@@ -1,8 +1,9 @@
+import { appConfig } from 'appConfig';
 import { create, StateCreator, UseBoundStore, StoreApi } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
 export const createStore = <T>(fn: StateCreator<T>, name: string): UseBoundStore<StoreApi<T>> => {
-  if (import.meta.env.MODE === 'development') {
+  if (appConfig.mode === 'development') {
     return create(devtools(fn, { name }));
   }
 
