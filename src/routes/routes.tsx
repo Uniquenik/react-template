@@ -21,12 +21,12 @@ export const NavLinks: NavLinkModel[] = [
     icon: <Mailbox />,
   },
   {
-    path: '/link2',
+    path: '/',
     title: 'Ссылка 2',
     icon: <InfoSquare />,
   },
   {
-    path: '/link2',
+    path: '/',
     title: 'Ссылка 3',
     icon: <InfoSquare />,
   },
