@@ -32,25 +32,28 @@ export const NavLinks: NavLinkModel[] = [
   },
 ];
 
-export const router = createBrowserRouter([
-  {
-    element: <ErrorBoundaryLayout />,
-    children: [
-      {
-        path: Routes.auth,
-        element: <AuthScreen />,
-      },
-      {
-        path: Routes.main,
-        element: <MainScreen />,
-      },
-      {
-        path: Routes.profile,
-        element: <ProfileScreen />,
-      },
-    ],
-  },
-]);
+export const router = createBrowserRouter(
+  [
+    {
+      element: <ErrorBoundaryLayout />,
+      children: [
+        {
+          path: Routes.auth,
+          element: <AuthScreen />,
+        },
+        {
+          path: Routes.main,
+          element: <MainScreen />,
+        },
+        {
+          path: Routes.profile,
+          element: <ProfileScreen />,
+        },
+      ],
+    },
+  ],
+  { basename: import.meta.env.VITE_BASE_URL || undefined },
+);
 
 export type NavLinkModel = {
   path: string;

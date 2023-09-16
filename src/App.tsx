@@ -35,7 +35,7 @@ export const App: React.FC = () => {
               <ClientErrorScreen error={error} onHandleReload={resetErrorBoundary} />
             )}
           >
-            <RouterProvider router={router} />
+            <RouterProvider  router={router} />
           </ErrorBoundary>
         </Suspense>
       </MantineProvider>
