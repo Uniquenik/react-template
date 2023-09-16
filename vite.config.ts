@@ -21,6 +21,5 @@ export default defineConfig({
     open: true,
     port: 3000,
   },
-  base: '/react-template',
   plugins: [react(), viteTsconfigPaths(), splitVendorChunkPlugin(), svgrPlugin()],
 });
