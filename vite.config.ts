@@ -1,3 +1,4 @@
+import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
 import { UserConfig, defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite';
 import svgrPlugin from 'vite-plugin-svgr';
@@ -25,7 +26,15 @@ export default defineConfig(props => {
       port: 3000,
     },
     base: process.env.VITE_BASE_URL ? process.env.VITE_BASE_URL + '/' : undefined,
-    plugins: [react(), viteTsconfigPaths(), splitVendorChunkPlugin(), svgrPlugin()],
+    plugins: [
+      legacy({
+        targets: ['defaults', 'not IE 11'],
+      }),
+      react(),
+      viteTsconfigPaths(),
+      splitVendorChunkPlugin(),
+      svgrPlugin(),
+    ],
   };
 
   return config;

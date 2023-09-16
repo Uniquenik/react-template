@@ -1,1 +1,0 @@
-import{u as a,j as t,B as u}from"./vendor-5d238b06.js";import{b as n,a as i}from"./FirebaseConfig-6ff737f5.js";import{u as m,D as c}from"./DefaultLayout-57df6f3e.js";import{R as f}from"./index-79e1270b.js";const x=()=>{const o=m(r=>r.resetStore),e=a(),s=()=>{n(i),o(),e(f.auth)};return t.jsx(c,{children:t.jsx(u,{onClick:s,children:"Logout"})})};export{x as default};
